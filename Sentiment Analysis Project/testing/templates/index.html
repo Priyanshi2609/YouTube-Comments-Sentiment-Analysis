@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Youtube Comment Sentiment Analysis</title>
+    <style>body{
+        max-width: 100%;
+         max-height: 100vh;
+         background-color: #183D3D ;
+         background-size: 120rem 60rem;
+         background-repeat: no-repeat;
+        text-align: center;
+        justify-content: center;
+     }
+     h1{
+         font-size: 2rem;
+         font-family: 'Lucida Sans';
+         color: #fff; 
+         margin-top: 3rem;
+     }
+     label{
+         font-size: 2rem;
+         font-family: 'Lucida Sans';
+         color: aliceblue;
+     
+     }
+     p{
+         font-size: 1.5rem;
+         text-align: left;
+         font-family: 'Lucida Sans';
+         color: #fff; 
+         padding: 1.5rem;
+     }
+     .url{
+         margin-top: 2rem;
+        margin-bottom: 2rem;
+     }
+     input{
+         max-height: 2rem;
+         width: 40rem;
+         font-size: 1.5rem;
+         font-family: 'Lucida Sans';
+         border: double #aaa 0.2rem;
+     }
+     .emoji1{
+         
+         padding: 1rem;
+         font-size: 1.5rem;
+         transform: scale(.5);
+         text-shadow: 0 2px 4px rgba(0,0,0,.3);
+         transition: 
+         text-shadow .2s ease-in-out,
+         transform .2s ease-in-out;  
+     }
+     .emoji1:hover {
+         transform: scale(1) translatey(-20px);
+         text-shadow: 0 20px 20px rgba(0,0,0,.3);
+       }
+       
+       .emoji1:before {
+         content: '🙂';
+       }
+       
+       .emoji1:hover:before {
+         content: '😄';
+       }
+     button{
+         background-color: cadetblue;
+         font-size: 1.5rem;
+         font-family: 'Lucida Sans';
+         border-radius: 0.5rem;
+         box-shadow: 2px 5px;
+         cursor: pointer;
+     }
+     .glass{
+         max-height: 30rem;
+         max-width: 80rem;
+         background: rgba(255, 255, 255, 0.2);
+         border-radius: 16px;
+         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+         backdrop-filter: blur(4.3px);
+         -webkit-backdrop-filter: blur(4.3px);
+         border: 1px solid rgba(255, 255, 255, 0.23);
+         justify-content: center;
+         margin: auto auto;
+         margin-top: 5rem;
+     }
+     
+     @media screen and (max-width: 800px){
+         body{
+             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(MYoutubeBg.jpeg);
+             background-size: 70rem 50rem;
+             background-repeat: no-repeat;
+             background-color: black;
+         }
+         input {
+             max-width: 15rem;
+       
+         }
+         h1{
+             font-size: 1.5rem;
+         }
+         p{
+             font-size: 1rem;
+         }
+         label{
+             font-size: 1.5rem;
+         }
+         .glass{
+             margin-top: 5rem;
+         }
+     }
+     .content{
+        display: flex;
+     }
+     img{
+  
+        max-height: 8rem;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 1.5rem;
+     }
+    </style>
+</head>
+
+<body>
+    <h1>YouTube Comments Sentiment Analysis </h1>
+    <div class="glass">
+        <div class="content">
+            <p>YouTube Sentiment Analyzer is an advanced tool designed to analyze and understand the sentiment expressed by users in the comments section of YouTube videos.It allows them to understand how their audience is responding to their content and make informed decisions about future content creation or marketing strategies.
+                By analyzing the sentiment expressed in comments, content creators, marketers, and researchers can gain a deeper understanding of audience engagement, feedback, and preferences.
+        
+                </p>
+                 <img src="https://d3caycb064h6u1.cloudfront.net/wp-content/uploads/2021/06/Untitled-3.png" alt="Sentiment">
+        </div>
+       
+        <div class="url">
+            <form action="/process_input" method="post">
+                <label >YouTube Video_ID:</label>
+                <input type="text" name="query" placeholder="Enter video_id" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <!--<div class="url">
+            <label for="fname" name="query">YouTube URL: </label>
+            <input type="text" class="url" id="url" name="query">
+            <button>Submit<span class="emoji1"></span></button>
+        </div>-->
+        
+    </div>
+
+
+</body>
+</html>

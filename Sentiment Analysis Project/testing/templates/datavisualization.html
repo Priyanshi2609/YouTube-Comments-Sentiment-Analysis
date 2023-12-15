@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="C:/Users/91998/OneDrive/Documents/sentiment analysis project/main basic code corrected/static/style.css" />
+    <style>
+      body{
+         background-color: #ddd;
+      }
+      .chart-heading {
+        font-family: "Rubik", sans-serif;
+        color: #000;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      
+      .chart-container {
+        width: 200px;
+        margin: auto auto;
+      }
+      .video {
+        font-family: "Rubik", sans-serif;
+        color: #000;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      .bar-chart-container {
+        width: 50%;
+        margin: 20px auto;
+    }
+      .nutrients-stats {
+        font-family: "Rubik", sans-serif;
+        text-align: center;
+        align-items: center;
+        gap: 24px;
+        
+        height: 25rem;
+        width: 20rem;
+        margin: 0 auto;
+        width: fit-content;
+        box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        padding: 8px 10px;
+        color: #000;
+        transition: all 400ms ease;
+      }
+      
+      .nutrients-stats:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 16px -7px rgba(0, 0, 0, 0.3);
+      }
+      
+      .nutrients-stats .details ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .nutrients-stats.details ul li {
+        font-size: 16px;
+        margin: 12px 0;
+        text-transform: uppercase;
+      }
+      
+      .nutrients-stats.details .percentage {
+        font-weight: 500;
+        color: #e63946;
+      }
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+      }
+      img {
+        border: 1px solid #ddd; 
+        border-radius: 4px;  
+        padding: 4px; 
+        width: 13rem; 
+        height: 20rem;
+      }
+      
+      /* Adding a hover shadow effect */
+      img:hover {
+        box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+      }
+      .contents{
+        display: flex;
+  
+      }
+      .text{
+        font-family: "Rubik", sans-serif;
+        color: #000;
+        font-size: 1.5rem;
+        text-align: center;
+        padding-top: 0.6rem;
+      }
+      </style>
+      <body>
+      
+    </style>    
+  </head>
+  <body>
+    <div class="text">
+      <h3>The analysis of the given video id is shown in the following graph:</h3>
+    </div>
+    
+      <div class="image">
+        <h3 class="video">Video Name: {{video_name}}</h3>
+        <img src="{{image_thumbnail_url}}" alt="image Thumbnail"   class="center">
+      </div>
+      <br>
+      <div class="contents">
+
+      <div class="nutrients-stats" style="margin-top: 2rem;">
+        <h2 class="chart-heading">Comments Visualization:Comments percentage</h2>
+        <div class="chart-container">
+          <canvas class="my-chart"></canvas>
+        </div>
+  
+        <div class="details">
+          <ul>
+              
+          </ul>
+  
+        </div>
+  
+      </div>
+      <br>
+     
+      <div class="bar-chart-container">
+        <h2 class="chart-heading">Comments visualization:comments count </h2>
+        
+          <canvas id="myBarChart"></canvas>
+      </div>
+    </div>
+   
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var data_list = {{ result  | safe }}
+        const chartData = {
+          labels:['Positive','Neutral','Negative'],
+          data:data_list
+        };
+        
+        const myChart = document.querySelector(".my-chart");
+        const ul = document.querySelector(".nutrients-stats .details ul");
+        
+        new Chart(myChart, {
+          type: "doughnut",
+          data: {
+            labels: chartData.labels,
+            datasets: [
+              {
+                label: "Comments Percentage",
+                data: chartData.data,
+              },
+            ],
+          },
+          options: {
+            animation: {
+              animateRotate: true, // Enable rotation animation
+              animateScale: true, // Enable scale animation
+              duration: 2000 // Animation duration in milliseconds
+          },
+            borderWidth: 10,
+            borderRadius: 2,
+            hoverBorderWidth: 0,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
+          },
+        });
+        
+        const populateUl = () => {
+          chartData.labels.forEach((l, i) => {
+            let li = document.createElement("li");
+            li.innerHTML = `${l}: <span class='percentage'>${chartData.data[i]}%</span>`;
+            ul.appendChild(li);
+          });
+        };
+        
+        populateUl();
+        var bar_data_list = {{ comments  | safe }}
+        var bar_data = {
+          labels: ['Positive','Neutral','Negative'],
+          datasets: [{
+              label: 'Number of Comments',
+              data: bar_data_list, // Replace with your actual data
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)'
+                  
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)'
+                  
+              ],
+              borderWidth: 1
+          }]
+      };
+      
+      // Chart configuration
+      var bar_config = {
+          type: 'bar',
+          data: bar_data,
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      };
+      
+      // Create a new chart
+      var bar_ctx = document.getElementById('myBarChart').getContext('2d');
+      var myBarChart = new Chart(bar_ctx, bar_config);
+  
+          
+    </script>
+</body>s
+
+</html>

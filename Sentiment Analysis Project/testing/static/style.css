@@ -1,0 +1,107 @@
+body{
+    max-width: 100%;
+     max-height: 100vh;
+     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(YoutubeBg.jpeg);
+     background-size: 120rem 60rem;
+     background-repeat: no-repeat;
+    text-align: center;
+    justify-content: center;
+ }
+ h1{
+     font-size: 2rem;
+     font-family: 'Lucida Sans';
+     color: #fff; 
+     margin-top: 3rem;
+ }
+ label{
+     font-size: 2rem;
+     font-family: 'Lucida Sans';
+     color: aliceblue;
+ 
+ }
+ p{
+     font-size: 1.5rem;
+     text-align: left;
+     font-family: 'Lucida Sans';
+     color: #fff; 
+     padding: 1.5rem;
+ }
+ .url{
+     margin-top: 2rem;
+    margin-bottom: 2rem;
+ }
+ input{
+     max-height: 2rem;
+     width: 40rem;
+     font-size: 1.5rem;
+     font-family: 'Lucida Sans';
+     border: double #aaa 0.2rem;
+ }
+ .emoji1{
+     
+     padding: 1rem;
+     font-size: 1.5rem;
+     transform: scale(.5);
+     text-shadow: 0 2px 4px rgba(0,0,0,.3);
+     transition: 
+     text-shadow .2s ease-in-out,
+     transform .2s ease-in-out;  
+ }
+ .emoji1:hover {
+     transform: scale(1) translatey(-20px);
+     text-shadow: 0 20px 20px rgba(0,0,0,.3);
+   }
+   
+   .emoji1:before {
+     content: '🙂';
+   }
+   
+   .emoji1:hover:before {
+     content: '😄';
+   }
+ button{
+     background-color: cadetblue;
+     font-size: 1.5rem;
+     font-family: 'Lucida Sans';
+     border-radius: 0.5rem;
+     box-shadow: 2px 5px;
+     cursor: pointer;
+ }
+ .glass{
+     max-height: 25rem;
+     max-width: 70rem;
+     background: rgba(255, 255, 255, 0.2);
+     border-radius: 16px;
+     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+     backdrop-filter: blur(4.3px);
+     -webkit-backdrop-filter: blur(4.3px);
+     border: 1px solid rgba(255, 255, 255, 0.23);
+     justify-content: center;
+     margin: auto auto;
+     margin-top: 10rem;
+ }
+ 
+ @media screen and (max-width: 800px){
+     body{
+         background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(MYoutubeBg.jpeg);
+         background-size: 70rem 50rem;
+         background-repeat: no-repeat;
+         background-color: black;
+     }
+     input {
+         max-width: 15rem;
+   
+     }
+     h1{
+         font-size: 1.5rem;
+     }
+     p{
+         font-size: 1rem;
+     }
+     label{
+         font-size: 1.5rem;
+     }
+     .glass{
+         margin-top: 5rem;
+     }
+ }
